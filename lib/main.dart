@@ -351,24 +351,24 @@ class _MyAppState extends State<MyApp> {
             ResponsiveGridRow(
               children: [
                 ResponsiveGridCol(
-                  xs: 6,
+                  xs: 12,
                   md: 6,
                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                          margin:EdgeInsets.all(50.0),
-                          child: Image.asset(
-                              "rangerover.png",
-                              alignment: Alignment.center,
-                            ),
-                         ),
+                        margin: EdgeInsets.all(50.0),
+                        child: Image.asset(
+                          "rangerover.png",
+                          alignment: Alignment.center,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 ResponsiveGridCol(
-                  xs: 6,
+                  xs: 12,
                   md: 6,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -379,126 +379,213 @@ class _MyAppState extends State<MyApp> {
                         "BEST SERVICES",
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-
-                          fontSize: 30.0
-                        ),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 30.0),
                       ),
                       Text(
                         "Feel the best experience with our rental deals",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30.0
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 30.0),
                       ),
                       Divider(
-                    color: Colors.grey,
-                    thickness: 1.0,
-                  ),
-                    Row(
-                    //    crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset("Citytransfers.png"),
-                        Column(
-                             crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("City Transfers", textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0
-                        ),),
-                            Text("Easy to rent personal car",textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 20.0
-                        ),),
-
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 10.0,),
-                    Row(
-                      children: [
-                        Image.asset("airporttransfer.png"),
-                        Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("Airport Transfer", textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0
-                        ),),
-                            Text("Get your personal car as you land",textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 20.0
-                        ),),
-
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 10.0,),Row(
-                      children: [
-                        Image.asset("Hospitaltransfer.png"),
-                        Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("Hospital Transfer", textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0
-                        ),),
-                            Text("Get your personal vehicle incase of any emergency",textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 20.0
-                        ),),
-
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 10.0,),
-                    Row(
-                      children: [
-                        Image.asset("Ceremony.png"),
-                        Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("Ceremony Rental", textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0
-                        ),),
-                            Text("Rent a personal car for any ceremony",textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 20.0
-                        ),),
-
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 10.0,),
+                        color: Colors.grey,
+                        thickness: 1.0,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset("Citytransfers.png"),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "City Transfers",
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              Text(
+                                "Easy to rent personal car",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 20.0),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset("airporttransfer.png"),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Airport Transfer",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              Text(
+                                "Get your personal car as you land",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 20.0),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset("Hospitaltransfer.png"),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Hospital Transfer",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              Text(
+                                "Get your personal vehicle incase of any emergency",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 20.0),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset("Ceremony.png"),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Ceremony Rental",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              Text(
+                                "Rent a personal car for any ceremony",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                    fontSize: 20.0),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                     ],
                   ),
                 ),
               ],
-            )
+            ),
+            Container(
+              height: 500,
+              width: width,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('Testimonials.png'),
+                  fit: BoxFit.contain,
+                ),
+                // shape: BoxShape.circle,
+              ),
+            ),
+            SizedBox(height: 30.0),
+            ResponsiveGridRow(
+              children: [
+                ResponsiveGridCol(
+                  xs: 12,
+                  md: 6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(50.0),
+                        child: Image.asset(
+                          "Joinus.png",
+                          alignment: Alignment.centerRight,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 12,
+                  md: 6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Join us on the ride.",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20.0),
+                      ),
+                      Text(
+                        "Become our Partner and earn Together",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20.0),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          "BECOME PARTNER",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(15),
+                          elevation: 0.2,
+                          primary: Colors.blue, // background
+                          onPrimary: Colors.white, // foreground
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
