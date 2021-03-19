@@ -1,113 +1,633 @@
+import 'package:ar_rental_web/pages/offers.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+double collapsableHeight = 0.0;
+Color selected = Colors.red;
+Color notSelected = Colors.black;
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final List<String> imgList = ["banner1.png", "banner1.png"];
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  color: Colors.white,
+                ),
+                AnimatedContainer(
+                  margin: EdgeInsets.only(top: 79.0),
+                  duration: Duration(milliseconds: 375),
+                  curve: Curves.ease,
+                  height: (width < 800.0) ? collapsableHeight : 0.0,
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: navBarItems,
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 80.0,
+                  padding: EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "logo.png",
+                        width: 150,
+                      ),
+                      LayoutBuilder(builder: (context, constraints) {
+                        if (width < 800.0) {
+                          return NavBarButton(
+                            onPressed: () {
+                              if (collapsableHeight == 0.0) {
+                                setState(() {
+                                  collapsableHeight = 240.0;
+                                });
+                              } else if (collapsableHeight == 240.0) {
+                                setState(() {
+                                  collapsableHeight = 0.0;
+                                });
+                              }
+                            },
+                          );
+                        } else {
+                          return Row(
+                            children: navBarItems,
+                          );
+                        }
+                      })
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: height,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 4),
+                viewportFraction: 1.0,
+                enlargeCenterPage: false,
+                // autoPlay: false,
+              ),
+              items: imgList
+                  .map((item) => Container(
+                        child: Center(
+                            child: Image.asset(
+                          item,
+                          fit: BoxFit.cover,
+                          height: height * 0.8,
+                        )),
+                      ))
+                  .toList(),
+            ),
+            ResponsiveGridRow(
+              children: [
+                ResponsiveGridCol(
+                  lg: 12,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100.0,
+                      child: Text(
+                        "We serve at different locations",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 50.0),
+                      ),
+                    ),
+                  ),
+                ),
+
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 3,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      "Jaipur",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 3,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      "Sikar",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 3,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      " Chirawa ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 3,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      "Pilani",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                // []
+
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 4,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      "Gudha",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 4,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      " Jhunjhunu ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 4,
+                  child: Container(
+                    height: 100.0,
+                    child: Text(
+                      "Nawalgarh",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.0),
+            ResponsiveGridRow(
+              children: [
+                ResponsiveGridCol(
+                    lg: 12,
+                    child: Column(children: [
+                      Text(
+                        "HOW IT WORKS",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 40.0),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        "AR Rental follow 3 working steps",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30.0),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                    ])),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset("Locationmarker.png"),
+                      Text(
+                        "Choose a Location",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Choose from a wide range of \ndifferent locations around \nyou",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset("bookyourcar.png"),
+                      Text(
+                        "Pick-up Date",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Choose your preferred date",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset("pickupdate.png"),
+                      Text(
+                        "Book Your Car",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Confirm your booking for easy pickup/drop off",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30.0),
+            ResponsiveGridRow(
+              children: [
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 6,
+                  child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          margin:EdgeInsets.all(50.0),
+                          child: Image.asset(
+                              "rangerover.png",
+                              alignment: Alignment.center,
+                            ),
+                         ),
+                    ],
+                  ),
+                ),
+                ResponsiveGridCol(
+                  xs: 6,
+                  md: 6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // Image.asset("pickupdate.png"),
+                      Text(
+                        "BEST SERVICES",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+
+                          fontSize: 30.0
+                        ),
+                      ),
+                      Text(
+                        "Feel the best experience with our rental deals",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30.0
+                        ),
+                      ),
+                      Divider(
+                    color: Colors.grey,
+                    thickness: 1.0,
+                  ),
+                    Row(
+                    //    crossAxisAlignment: CrossAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset("Citytransfers.png"),
+                        Column(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("City Transfers", textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0
+                        ),),
+                            Text("Easy to rent personal car",textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20.0
+                        ),),
+
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10.0,),
+                    Row(
+                      children: [
+                        Image.asset("airporttransfer.png"),
+                        Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("Airport Transfer", textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0
+                        ),),
+                            Text("Get your personal car as you land",textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20.0
+                        ),),
+
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10.0,),Row(
+                      children: [
+                        Image.asset("Hospitaltransfer.png"),
+                        Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("Hospital Transfer", textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0
+                        ),),
+                            Text("Get your personal vehicle incase of any emergency",textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20.0
+                        ),),
+
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10.0,),
+                    Row(
+                      children: [
+                        Image.asset("Ceremony.png"),
+                        Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("Ceremony Rental", textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0
+                        ),),
+                            Text("Rent a personal car for any ceremony",textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20.0
+                        ),),
+
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10.0,),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+List<Widget> navBarItems = [
+  NavBarItem(
+    text: 'HOME',
+  ),
+  NavBarItem(
+    text: 'OFFERS',
+  ),
+  NavBarItem(
+    text: 'TARRIF',
+  ),
+  NavBarItem(
+    text: 'CONTACT US',
+  ),
+  NavBarItem(
+    text: 'SIGN UP',
+  ),
+  NavBarItem(
+    text: 'SIGN IN',
+  ),
+];
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+class NavBarItem extends StatefulWidget {
+  final String text;
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  NavBarItem({
+    this.text,
+  });
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _NavBarItemState createState() => _NavBarItemState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _NavBarItemState extends State<NavBarItem> {
+  Color color = notSelected;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    return MouseRegion(
+      onEnter: (value) {
+        setState(() {
+          color = selected;
+        });
+      },
+      onExit: (value) {
+        setState(() {
+          color = notSelected;
+        });
+      },
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          splashColor: Colors.white60,
+          onTap: () {
+            Widget name = Offers();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => name,
+              ),
+            );
+            print(widget.text);
+          },
+          child: Container(
+            height: 40.0,
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 24.0),
+            child: Text(
+              widget.text,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: color,
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class NavBarButton extends StatefulWidget {
+  final Function onPressed;
+
+  NavBarButton({
+    this.onPressed,
+  });
+
+  @override
+  _NavBarButtonState createState() => _NavBarButtonState();
+}
+
+class _NavBarButtonState extends State<NavBarButton> {
+  Widget build(BuildContext context) {
+    return Container(
+      height: 55.0,
+      width: 60.0,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 2.0,
+        ),
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: InkWell(
+          splashColor: Colors.white60,
+          onTap: () {
+            setState(() {
+              widget.onPressed();
+            });
+          },
+          child: Icon(
+            Icons.menu,
+            size: 30.0,
+            color: Colors.black,
+          ),
+        ),
+      ),
     );
   }
 }
